@@ -23,6 +23,5 @@ for line in lines:
     if is_triangle:
         count += 1
 
-
 print(count)
 
