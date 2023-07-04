@@ -1,35 +1,38 @@
 # --- Advent of Code 2016---
 # --- Day 6: Signals and Noise ---
 
-from pprint import pprint
-
 def get_data():
-    data = [
-            'eedadn', 'drvtee', 'eandsr', 'raavrd', 
-            'atevrs', 'tsrnev', 'sdttsa', 'rasrtv',
-            'nssdts', 'ntnada', 'svetve', 'tesnvt',
-            'vntsnd', 'vrdear', 'dvrsen', 'enarar',
-            ]
+
+    with open('input.txt', 'r', encoding='utf-8') as file:
+        data = file.readlines()
 
     return data
 
-def solver01(signals):
+def solver(signals, which='m'):
+    if which == 'm':
+        position = -1
+    elif which == 'l':
+        position = 0
+
     sig_len = len(signals[0])
     counts = [{} for _ in range(sig_len)]
 
     for signal in signals:
         for i, c in enumerate(signal):
             counts[i][c] = counts[i][c] + 1 if c in counts[i] else 1
+    communication = [] 
     for d in counts:
         p = list(d.items())
         p.sort(key=lambda x: x[1])
-        print(p[-1][0], end='') 
-    print()
+        communication.append(p[position][0])
+
+    return ''.join(communication)
 
 
 def main():
     data = get_data()
-    solver01(data)
+    print(f"Part 1: {solver(data, 'm')}")
+    print(f"Part 2: {solver(data, 'l')}")
 
 
 if __name__ == '__main__':
