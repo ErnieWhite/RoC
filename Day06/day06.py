@@ -9,9 +9,9 @@ def get_data():
     return data
 
 def solver(signals, which='m'):
-    if which == 'm':
+    if which == 'm':  # return the most common characters
         position = -1
-    elif which == 'l':
+    elif which == 'l':  # return the least common characters
         position = 0
 
     sig_len = len(signals[0])
